@@ -15,6 +15,7 @@ export default function PageHeader() {
   return (
     <>
       <NavigationMenu>
+        <h1 className="font-extrabold italic">Market Fundamentals</h1>
         <NavigationMenuList>
           <NavigationMenuItem>
             <Link href="/" legacyBehavior passHref>
@@ -31,8 +32,8 @@ export default function PageHeader() {
             </Link>
           </NavigationMenuItem>
         </NavigationMenuList>
+        <ModeToggle />
       </NavigationMenu>
-      <ModeToggle />
     </>
   );
 }

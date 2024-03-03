@@ -28,7 +28,7 @@ export default function Home() {
             disableTransitionOnChange
           >
             <PageHeader />
-            <Card className={"w-[750px], inline-block"}>
+            <Card className={"w-[750px]"}>
               <CardHeader>
                 <CardTitle>Chart</CardTitle>
                 <CardDescription>Asset 1</CardDescription>
@@ -39,7 +39,7 @@ export default function Home() {
                 </div>
               </CardContent>
             </Card>
-            <Card className={"w-[380px], inline-block"}>
+            <Card className={"w-[380px]"}>
               <CardHeader>
                 <CardTitle>Add a Stock</CardTitle>
                 <CardDescription>Track a new asset here.</CardDescription>

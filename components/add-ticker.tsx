@@ -14,10 +14,19 @@ import { Input } from "@/components/ui/input"
 import { Button } from "./ui/button"
 import "@/app/page"
 import { Dispatch, SetStateAction } from "react"
+import { Toaster } from "./ui/toaster"
+import { useToast } from "./ui/use-toast"
+import { restClient } from "@polygon.io/client-js"
+import dotenv from "dotenv"
+
+dotenv.config();
+const apiKey = process.env.POLY_API_KEY;
 
 const formSchema = z.object({
   ticker: z.string(),
 });
+
+const rest = restClient(apiKey);
 
 export default function AddTicker({ setTicker }: { setTicker: Dispatch<SetStateAction<string>> }) {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -27,9 +36,20 @@ export default function AddTicker({ setTicker }: { setTicker: Dispatch<SetStateA
     },
   });
 
+  const { toast } = useToast();
 
   function onSubmit(ticker: z.infer<typeof formSchema>) {
-    setTicker(ticker.ticker);
+    let stock = ticker.ticker.toUpperCase();
+    rest.reference.tickerDetails(stock).then((data) => {
+      console.log(data);
+    }).catch(e => {
+      console.log('Erorr');
+    });
+    setTicker(stock);
+    toast({
+      title: `${stock} Added`,
+      description: `${stock} will now be tracked in your watchlist.`
+    })
   }
 
   return (
@@ -53,6 +73,7 @@ export default function AddTicker({ setTicker }: { setTicker: Dispatch<SetStateA
         />
         <Button type="submit">Submit</Button>
       </form>
+      <Toaster />
     </Form>
   )
 }
