@@ -37,18 +37,18 @@ export default function Graph() {
   const ema12 = ema()
     .id(1)
     .options({ windowSize: 12 })
-    .merge((d, c) => {
+    .merge((d: any, c: any) => {
       d.ema12 = c;
     })
-    .accessor((d) => d.ema12);
+    .accessor((d: any) => d.ema12);
 
   const ema26 = ema()
     .id(2)
     .options({ windowSize: 26 })
-    .merge((d, c) => {
+    .merge((d: any, c: any) => {
       d.ema26 = c;
     })
-    .accessor((d) => d.ema26);
+    .accessor((d: any) => d.ema26);
 
   const elder = elderRay();
 
@@ -64,39 +64,39 @@ export default function Graph() {
   const gridHeight = height - margin.top - margin.bottom;
 
   const elderRayHeight = 100;
-  const elderRayOrigin = (_, h) => [0, h - elderRayHeight];
+  const elderRayOrigin = (_: any, h: any) => [0, h - elderRayHeight];
   const barChartHeight = gridHeight / 4;
-  const barChartOrigin = (_, h) => [0, h - barChartHeight - elderRayHeight];
+  const barChartOrigin = (_: any, h: any) => [0, h - barChartHeight - elderRayHeight];
   const chartHeight = gridHeight - elderRayHeight;
-  const yExtents = (data) => {
+  const yExtents = (data: any) => {
     return [data.high, data.low];
   };
   const dateTimeFormat = "%d %b";
   const timeDisplayFormat = timeFormat(dateTimeFormat);
 
-  const barChartExtents = (data) => {
+  const barChartExtents = (data: any) => {
     return data.volume;
   };
 
-  const candleChartExtents = (data) => {
+  const candleChartExtents = (data: any) => {
     return [data.high, data.low];
   };
 
-  const yEdgeIndicator = (data) => {
+  const yEdgeIndicator = (data: any) => {
     return data.close;
   };
 
-  const volumeColor = (data) => {
+  const volumeColor = (data: any) => {
     return data.close > data.open
       ? "rgba(38, 166, 154, 0.3)"
       : "rgba(239, 83, 80, 0.3)";
   };
 
-  const volumeSeries = (data) => {
+  const volumeSeries = (data: any) => {
     return data.volume;
   };
 
-  const openCloseColor = (data) => {
+  const openCloseColor = (data: any) => {
     return data.close > data.open ? "#26a69a" : "#ef5350";
   };
 
@@ -190,7 +190,7 @@ export default function Graph() {
         <SingleValueTooltip
           yAccessor={elder.accessor()}
           yLabel="Elder Ray"
-          yDisplayFormat={(d) =>
+          yDisplayFormat={(d: any) =>
             `${pricesDisplayFormat(d.bullPower)}, ${pricesDisplayFormat(
               d.bearPower
             )}`

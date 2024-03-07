@@ -65,7 +65,7 @@ export default function AddTicker({ setTicker }: { setTicker: Dispatch<SetStateA
                 <Input placeholder="AAPL" {...field} />
               </FormControl>
               <FormDescription>
-                Enter the ticker of the asset you'd like to track.
+                Enter the ticker of the asset you&apos;d like to track.
               </FormDescription>
               <FormMessage />
             </FormItem>
